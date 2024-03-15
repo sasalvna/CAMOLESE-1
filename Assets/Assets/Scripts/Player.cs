@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -8,27 +9,78 @@ public class Player : MonoBehaviour
 
     [SerializeField] private int speed;
     [SerializeField] private int forcaPulo;
+    [SerializeField] private Animator animator;
     private bool PodePular, PuloDuplo;
     private int Vida;
+
+    [SerializeField] SpriteRenderer SR;
 
 
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         Vida = 3;
+        transform.position = new Vector2(0f, -1.41f);
     }
 
-    // Update is called once per frame
     void Update()
     {
         Mover();
         Pular();
         Morte();
+
     }
 
     void Mover()
     {
         rig.velocity= new Vector2(Input.GetAxis("Horizontal") * speed, rig.velocity.y);
+
+
+        if (Input.GetAxis("Horizontal") == 0)
+        {
+            animator.SetBool("idle", true);
+            animator.SetBool("run", false);
+        }
+        else
+        {
+            animator.SetBool("idle", false);
+        }
+
+
+        if(Input.GetAxis("Horizontal") > 0)
+        {
+            SR.flipX = false;
+            animator.SetBool("run", true);
+        }
+
+        if(Input.GetAxis("Horizontal") < 0)
+        {
+            SR.flipX = true;
+            animator.SetBool("run", true);
+        }
+
+        if(Input.GetAxis("Vertical") > 0)
+        {
+           animator.SetBool("jump", true); 
+        }
+
+        if(rig.velocity.y < 0)
+        {
+            animator.SetBool("fall", true);
+        }
+        else
+        {
+             animator.SetBool("fall", false);
+        }
+
+        if(rig.velocity.y > 0)
+        {
+            animator.SetBool("jump", true);
+        }
+        else
+        {
+             animator.SetBool("jump", false);
+        }
     }
 
     void Pular()
@@ -40,21 +92,25 @@ public class Player : MonoBehaviour
                 rig.AddForce(Vector2.up * forcaPulo, ForceMode2D.Impulse);
                 PodePular = false;
                 PuloDuplo = true;
+                animator.SetBool("jump", true);
             }
+
+        }
             else if( !PodePular && PuloDuplo)
             {
                 rig.AddForce(Vector2.up * forcaPulo, ForceMode2D.Impulse);
                 PodePular = false;
                 PuloDuplo = false;
+                animator.SetBool("doubleJump", true);
             }
         }
-    }
 
     void Morte()
     {
-        if(Vida = 0)
+        if(Vida == 0)
         {
             Destroy(this.gameObject);
+             SceneManager.LoadScene("Morte");
         }
     }
 
@@ -68,6 +124,7 @@ public class Player : MonoBehaviour
         {
             PodePular = false;
         }
+
         if (colisao.gameObject.CompareTag("Chão"))
         {
             PodePular = false;
@@ -76,6 +133,7 @@ public class Player : MonoBehaviour
         {
             PodePular = true;
         }
+
         if(colisao.gameObject.CompareTag("Mola"))
         {
             PodePular = false;
@@ -84,6 +142,11 @@ public class Player : MonoBehaviour
         if (colisao.gameObject.CompareTag("Espinho"))
         {
             Vida = Vida - 1;
+        }
+
+        if (colisao.gameObject.CompareTag("V2"))
+        {
+           Vida = 0;
         }
     }
 }
