@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         Vida = 3;
         transform.position = new Vector2(0f, -1.41f);
+        PodePular = false;
+        PuloDuplo = false;
     }
 
     void Update()
@@ -59,11 +61,6 @@ public class Player : MonoBehaviour
             animator.SetBool("run", true);
         }
 
-        if(Input.GetAxis("Vertical") > 0)
-        {
-           animator.SetBool("jump", true); 
-        }
-
         if(rig.velocity.y < 0)
         {
             animator.SetBool("fall", true);
@@ -79,7 +76,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-             animator.SetBool("jump", false);
+            animator.SetBool("jump", false);
         }
     }
 
@@ -87,7 +84,7 @@ public class Player : MonoBehaviour
     {
         if(Input.GetButtonDown("Jump"))
         {
-            if (PodePular)
+            if (PodePular = true)
             {
                 rig.AddForce(Vector2.up * forcaPulo, ForceMode2D.Impulse);
                 PodePular = false;
@@ -96,12 +93,12 @@ public class Player : MonoBehaviour
             }
 
         }
-            else if( !PodePular && PuloDuplo)
+            else if( PodePular == false && PuloDuplo)
             {
                 rig.AddForce(Vector2.up * forcaPulo, ForceMode2D.Impulse);
                 PodePular = false;
                 PuloDuplo = false;
-                animator.SetBool("doubleJump", true);
+                animator.SetBool("jump", false);
             }
         }
 
@@ -120,18 +117,10 @@ public class Player : MonoBehaviour
         {
             PodePular = true;
         }
-        else
-        {
-            PodePular = false;
-        }
 
-        if (colisao.gameObject.CompareTag("Chão"))
+        if (colisao.gameObject.CompareTag("Chao"))
         {
             PodePular = false;
-        }
-        else 
-        {
-            PodePular = true;
         }
 
         if(colisao.gameObject.CompareTag("Mola"))
@@ -149,4 +138,8 @@ public class Player : MonoBehaviour
            Vida = 0;
         }
     }
+    //void OnCollisionExit2D(Collision colisao)
+   // {
+
+   // }
 }

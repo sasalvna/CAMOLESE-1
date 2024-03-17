@@ -7,18 +7,18 @@ using UnityEngine.SceneManagement;
 public class Buton : MonoBehaviour
 {
     
-    [SerializeField] private Button BotaoJogar;
+    [SerializeField] private Button BotaoRenascer;
 
     GameObject MenuGameUI;
 
     private void Awake()
     {
-        BotaoJogar.onClick.AddListener(OnButtonPlayClickJogar);
+        BotaoRenascer.onClick.AddListener(OnButtonPlayClickRenascer);
     }
 
-    private void OnButtonPlayClickJogar()
+    private void OnButtonPlayClickRenascer()
     {
-        Debug.Log("JOGAR");
+        Debug.Log("RENASCER");
         
     }
 

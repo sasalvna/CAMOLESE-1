@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 public class Quit_Game : MonoBehaviour
 {
 
-    [SerializeField] private Button BotaoSair;
+    [SerializeField] private Button ButtonQuit;
 
     GameObject MenuGameUI;
     private void Awake()
     {
-        BotaoSair.onClick.AddListener(OnButtonPlayClickJogar);
+        ButtonQuit.onClick.AddListener(OnButtonPlayClickJogar);
     }
     private void OnButtonPlayClickJogar()
     {
