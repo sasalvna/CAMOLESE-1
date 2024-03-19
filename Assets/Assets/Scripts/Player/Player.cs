@@ -7,36 +7,49 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rig;
 
-    [SerializeField] private int speed;
-    [SerializeField] private int forcaPulo;
-    [SerializeField] private Animator animator;
-    private bool PodePular, PuloDuplo;
+    Animator animator;
+
+    SpriteRenderer SR;
+
+    BoxCollider2D box;
+
     private int Vida;
 
-    [SerializeField] SpriteRenderer SR;
+    [SerializeField] private int speed;
 
+    [SerializeField] private int JumpForce;
+
+    [SerializeField] private bool isJumping, doubleJump;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         rig = GetComponent<Rigidbody2D>();
+
+        box = GetComponent<BoxCollider2D>();
+
         Vida = 3;
+
+        SR = GetComponent<SpriteRenderer>();
+
         transform.position = new Vector2(0f, -1.41f);
-        PodePular = false;
-        PuloDuplo = false;
+
+        isJumping = false;
+
+        doubleJump= false;
     }
 
     void Update()
     {
-        Mover();
-        Pular();
-        Morte();
-
+        Move();
+        Jump();
+        Die();
     }
 
-    void Mover()
+    void Move()
     {
         rig.velocity= new Vector2(Input.GetAxis("Horizontal") * speed, rig.velocity.y);
-
 
         if (Input.GetAxis("Horizontal") == 0)
         {
@@ -47,7 +60,6 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("idle", false);
         }
-
 
         if(Input.GetAxis("Horizontal") > 0)
         {
@@ -80,54 +92,38 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Pular()
+    void Jump()
     {
         if(Input.GetButtonDown("Jump"))
         {
-            if (PodePular = true)
+            if(!isJumping)
             {
-                rig.AddForce(Vector2.up * forcaPulo, ForceMode2D.Impulse);
-                PodePular = false;
-                PuloDuplo = true;
+                rig.AddForce( new Vector2(0f, JumpForce) , ForceMode2D.Impulse);
+                doubleJump = true;
                 animator.SetBool("jump", true);
-            }
-
-        }
-            else if( PodePular == false && PuloDuplo)
+            } 
+            else
             {
-                rig.AddForce(Vector2.up * forcaPulo, ForceMode2D.Impulse);
-                PodePular = false;
-                PuloDuplo = false;
-                animator.SetBool("jump", false);
+                if(doubleJump)
+                {
+                    rig.AddForce( new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+                    doubleJump = false;
+                    animator.SetBool("dobleJump", true);
+                }
             }
         }
+    }
 
-    void Morte()
+    void Die()
     {
         if(Vida == 0)
         {
-            Destroy(this.gameObject);
-             SceneManager.LoadScene("Morte");
+            SceneManager.LoadScene("Morte");
         }
     }
 
     void OnCollisionEnter2D(Collision2D colisao)
     {
-        if (colisao.gameObject.CompareTag("Plataforma"))
-        {
-            PodePular = true;
-        }
-
-        if (colisao.gameObject.CompareTag("Chao"))
-        {
-            PodePular = false;
-        }
-
-        if(colisao.gameObject.CompareTag("Mola"))
-        {
-            PodePular = false;
-        }
-
         if (colisao.gameObject.CompareTag("Espinho"))
         {
             Vida = Vida - 1;
@@ -137,9 +133,20 @@ public class Player : MonoBehaviour
         {
            Vida = 0;
         }
-    }
-    //void OnCollisionExit2D(Collision colisao)
-   // {
 
-   // }
+        // Layer 8 = Ground
+
+        if (colisao.gameObject.layer == 8)
+        {
+            isJumping = false;
+            animator.SetBool("jump", false);
+        }
+    }
+    void OnCollisionExit2D(Collision2D colisao)
+   {
+        if (colisao.gameObject.layer == 8)
+        {
+           isJumping = true;
+        }
+   }
 }
