@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
             animator.SetBool("idle", false);
         }
 
+        
         if(Input.GetAxis("Horizontal") > 0)
         {
             SR.flipX = false;
@@ -108,7 +109,7 @@ public class Player : MonoBehaviour
                 {
                     rig.AddForce( new Vector2(0f, JumpForce), ForceMode2D.Impulse);
                     doubleJump = false;
-                    animator.SetBool("dobleJump", true);
+                   // animator.SetBool("dobleJump", true);
                 }
             }
         }
