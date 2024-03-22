@@ -11,6 +11,7 @@ public class Apple : MonoBehaviour
     public GameObject collected;
 
     public int Score;
+    
     void Start()
     {   
         SR = GetComponent<SpriteRenderer>();

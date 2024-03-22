@@ -108,8 +108,9 @@ public class Player : MonoBehaviour
                 if(doubleJump)
                 {
                     rig.AddForce( new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+                    animator.SetBool("jump", false);
+                    animator.SetBool("dobleJump", true);
                     doubleJump = false;
-                   // animator.SetBool("dobleJump", true);
                 }
             }
         }
@@ -140,7 +141,10 @@ public class Player : MonoBehaviour
         if (colisao.gameObject.layer == 8)
         {
             isJumping = false;
+            animator.SetBool("idle", true);
+            animator.SetBool("dobleJump", false);
             animator.SetBool("jump", false);
+
         }
     }
     void OnCollisionExit2D(Collision2D colisao)
