@@ -8,7 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Morte.unity
     guid: fd75fdc07fbae834cba720cdefc400a1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inicio.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/1.unity
+    guid: d9123b9ee9e9d4a448f36bb8ece36fe1
+  - enabled: 1
+    path: Assets/Scenes/2.unity
+    guid: 799cb9a1d23187e4fb2e15b79f4588f8
   m_configObjects: {}

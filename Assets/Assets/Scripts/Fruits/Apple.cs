@@ -27,7 +27,8 @@ public class Apple : MonoBehaviour
 
             collected.SetActive(true);
 
-        //    GameController.instance.totalScore += Score;
+            GameController.instance.totalScore += Score;
+            GameController.instance.UpdateScoreText();
 
             Debug.Log("Coletou Fruta");
 

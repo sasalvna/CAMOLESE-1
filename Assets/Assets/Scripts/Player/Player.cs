@@ -146,6 +146,11 @@ public class Player : MonoBehaviour
             animator.SetBool("jump", false);
 
         }
+
+        if (colisao.gameObject.CompareTag("WIN"))
+        {
+            SceneManager.LoadScene("2");
+        }
     }
     void OnCollisionExit2D(Collision2D colisao)
    {
