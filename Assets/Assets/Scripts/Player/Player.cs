@@ -120,6 +120,7 @@ public class Player : MonoBehaviour
     {
         if(Vida == 0)
         {
+            Debug.Log("Morreu!");
             SceneManager.LoadScene("Morte");
         }
     }
@@ -128,6 +129,7 @@ public class Player : MonoBehaviour
     {
         if (colisao.gameObject.CompareTag("Espinho"))
         {
+            Debug.Log("Perdeu Vida");
             Vida = Vida - 1;
         }
 
@@ -149,6 +151,7 @@ public class Player : MonoBehaviour
 
         if (colisao.gameObject.CompareTag("WIN"))
         {
+            Debug.Log("WIN!");
             SceneManager.LoadScene("2");
         }
     }

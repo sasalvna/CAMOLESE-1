@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -160,7 +160,123 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: On (32x10)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -5}
+        - {x: 16, y: 0}
+        - {x: 0, y: 5}
+        - {x: -16, y: 0}
+      physicsShape:
+      - - {x: 0, y: -5}
+        - {x: 16, y: 0}
+        - {x: 0, y: 5}
+        - {x: -16, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0458e0cad3181bc4da30668423cce088
+      internalID: 1817324758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: On (32x10)_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -5}
+        - {x: 16, y: 0}
+        - {x: 0, y: 5}
+        - {x: -16, y: 0}
+      physicsShape:
+      - - {x: 0, y: -5}
+        - {x: 16, y: 0}
+        - {x: 0, y: 5}
+        - {x: -16, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99ba0496f1935184f94194547668e39b
+      internalID: -46192050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: On (32x10)_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -5}
+        - {x: 16, y: 0}
+        - {x: 0, y: 5}
+        - {x: -16, y: 0}
+      physicsShape:
+      - - {x: 0, y: -5}
+        - {x: 16, y: 0}
+        - {x: 0, y: 5}
+        - {x: -16, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e5e3df4a9d1c04a997baea0c9bae04
+      internalID: -455573340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: On (32x10)_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -5}
+        - {x: 16, y: 0}
+        - {x: 0, y: 5}
+        - {x: -16, y: 0}
+      physicsShape:
+      - - {x: 0, y: -5}
+        - {x: 16, y: 0}
+        - {x: 0, y: 5}
+        - {x: -16, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: aab9393d4ff45c34f88a3890de486cbd
+      internalID: 2043792112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -171,7 +287,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      On (32x10)_0: 1817324758
+      On (32x10)_1: -46192050
+      On (32x10)_2: -455573340
+      On (32x10)_3: 2043792112
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
