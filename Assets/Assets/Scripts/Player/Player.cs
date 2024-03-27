@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     BoxCollider2D box;
 
-    private int Vida;
+    public int Vida;
 
     [SerializeField] private int speed;
 
@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
         isJumping = false;
 
         doubleJump= false;
+
+        animator.Play("apa");
     }
 
     void Update()
@@ -121,8 +123,16 @@ public class Player : MonoBehaviour
         if(Vida == 0)
         {
             Debug.Log("Morreu!");
-            SceneManager.LoadScene("Morte");
+            animator.SetBool("desa", true);
+            StartCoroutine("Trocar");
         }
+    }
+
+
+    IEnumerator Trocar()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Morte");
     }
 
     void OnCollisionEnter2D(Collision2D colisao)
@@ -131,6 +141,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Perdeu Vida");
             Vida = Vida - 1;
+            animator.Play("hit");
         }
 
         if (colisao.gameObject.CompareTag("V2"))
