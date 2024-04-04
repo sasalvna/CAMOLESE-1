@@ -13,11 +13,11 @@ public class Player : MonoBehaviour
 
     BoxCollider2D box;
 
-    public int Vida;
+    [SerializeField] [Range(1,10)] private int Vida;
 
-    [SerializeField] private int speed;
+    [SerializeField] [Range(1,10)] private int speed;
 
-    [SerializeField] private int JumpForce;
+    [SerializeField] [Range(1,20)] private int JumpForce;
 
     [SerializeField] private bool isJumping, doubleJump;
 
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Trocar()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
         SceneManager.LoadScene("Morte");
     }
 
